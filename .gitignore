@@ -1,0 +1,12 @@
+# Ignore environment variables file
+.env 
+# Ignore local Python virtual environment
+env/
+venv/
+codextestenv/
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+# Ignore vendored openai-agents-python directory
+openai-agents-python/ 
