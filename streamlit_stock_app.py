@@ -108,7 +108,9 @@ if analyze_button and _require_api_key():
 
     with st.spinner("Running agents and fetching data…"):
         try:
-            price_res, pe_res, analysis_res = _run_async(analyze_ticker(ticker, model=model_override))
+            price_res, pe_res, analysis_res, judge_res = _run_async(
+                analyze_ticker(ticker, model=model_override)
+            )
         except Exception as exc:  # noqa: BLE001
             st.exception(exc)
             st.stop()
@@ -156,6 +158,26 @@ if analyze_button and _require_api_key():
 
     st.subheader("Analyst commentary 🧠")
     st.write(analysis_res.analysis)
+
+    st.markdown("---")
+
+    # ------------------------------------------------------------------
+    # Judge verdict
+    # ------------------------------------------------------------------
+
+    st.subheader("Quality review 🧐")
+
+    quality_color = {
+        "excellent": "🟢",
+        "good": "🟢",
+        "fair": "🟠",
+        "poor": "🔴",
+    }.get(judge_res.quality.lower(), "⚪️")
+
+    st.markdown(
+        f"**Verdict:** {quality_color} **{judge_res.quality.title()}**  \n"
+        f"**Comments:** {judge_res.comments}"
+    )
 
     st.markdown("---")
 

@@ -39,13 +39,14 @@ async def _main() -> None:  # noqa: D401
     parser.add_argument("--model", default=None, help="Override LLM model")
     args = parser.parse_args()
 
-    price_res, pe_res, analysis_res = await analyze_ticker(args.ticker, model=args.model)
+    price_res, pe_res, analysis_res, judge_res = await analyze_ticker(args.ticker, model=args.model)
 
     # Dump everything as JSON for easy downstream piping / parsing.
     output = {
         "price": price_res.model_dump(),
         "pe": pe_res.model_dump(),
         "analysis": analysis_res.model_dump(),
+        "judgement": judge_res.model_dump(),
     }
     print(json.dumps(output, indent=2))
 
