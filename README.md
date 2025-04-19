@@ -80,7 +80,11 @@ python stock_analysis_app.py AAPL
     "price": 215.23,
     "trailingPE": 28.10,
     "forwardPE": 25.58,
-    "analysis": "Apple's premium valuation reflects its…"
+    "analysis": "Apple's premium valuation reflects its..."
+  },
+  "judge": {
+    "quality": "excellent",
+    "comments": "The analysis is thorough and well-supported by data."
   }
 }
 ```
