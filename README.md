@@ -1,7 +1,7 @@
 # AI‑Powered Stock Analysis
 
 **AI Stock Analyzer** is a tiny showcase project that combines the OpenAI
-Agents SDK, *yfinance*, and Streamlit to produce quick, human‑readable
+Agents SDK, *yfinance*, and Streamlit to produce quick, human‑readable
 financial insights for any publicly‑traded company.
 
 The project ships with **two independent front‑ends** that reuse the exact
@@ -16,8 +16,9 @@ Under the hood the heavy lifting lives in
 
 * fetch the latest stock price via an OpenAI agent that is allowed to use a
   web‑search tool;
-* retrieve trailing & forward P/E ratios with *yfinance*;
-* ask an LLM to comment on the company’s outlook and return structured JSON.
+* retrieve trailing & forward P/E ratios with *yfinance*;
+* ask an LLM to comment on the company's outlook and return structured JSON;
+* **NEW**: Added a quality review section with a verdict on the analysis quality.
 
 ---
 
@@ -56,9 +57,9 @@ OPENAI_API_KEY=sk‑...
 
 ---
 
-## 1 — Run the CLI
+## 1 — Run the CLI
 
-The CLI prints a rich JSON object that you can pipe to `jq`, store in a file,
+The CLI prints a rich JSON object that you can pipe to `jq`, store in a file,
 etc.
 
 ```bash
@@ -79,7 +80,7 @@ python stock_analysis_app.py AAPL
     "price": 215.23,
     "trailingPE": 28.10,
     "forwardPE": 25.58,
-    "analysis": "Apple’s premium valuation reflects its…"
+    "analysis": "Apple's premium valuation reflects its…"
   }
 }
 ```
@@ -90,7 +91,7 @@ Optional flags:
 
 ---
 
-## 2 — Run the Streamlit app
+## 2 — Run the Streamlit app
 
 ```bash
 streamlit run streamlit_stock_app.py
@@ -102,8 +103,8 @@ The dashboard lets you:
 * choose the historical period/interval shown in the line chart;
 * optionally override the LLM model.
 
-It displays 🔹 key price & P/E metrics, 🔹 an interactive Plotly chart, and 🔹
-the LLM’s commentary. A “Raw JSON output” expander at the bottom is handy for
+It displays 🔹 key price & P/E metrics, 🔹 an interactive Plotly chart, 🔹
+the LLM's commentary, and 🔹 a quality review of the analysis with a verdict and comments. A "Raw JSON output" expander at the bottom is handy for
 debugging.
 
 ---
